@@ -33,7 +33,7 @@ function playRound () {
     }
     else if (comp == 'rock' && player == 'paper' ||
              comp == 'paper' && player == 'scissors' ||
-             comp == 'scissors' && player =='rock'){
+             comp == 'scissors' && player =='rock') {
         
         response = "You Win! " + player.charAt(0).toUpperCase()+ player.slice(1) + " beats " + comp + ".";
         score++;
@@ -47,22 +47,29 @@ function playRound () {
 
 function game() {
     let ttlScore = 0;
-    for(let i = 0; i < 5 ; i++){
+    const gameElement = document.getElementById('game_space'); 
+
+    for (let i = 0; i < 5 ; i++) {
         values = playRound();
         if (values[1] > 0){
             ttlScore++;
         };
-        console.log(values[0] + " Your current score is: " + ttlScore + ".");
+
+        //console.log(values[0] + " Your current score is: " + ttlScore + ".");
+        gameElement.innerHTML = values[0].toString() + "<p>Your current score is: " + ttlScore.toString() + ".</p>";
 
     }
 
-    console.log("Your Score was: " + ttlScore + " out of 5.")
+    //console.log("Your Score was: " + ttlScore + " out of 5.")
+    let preamble = "<p>Your Score was: " + ttlScore.toString() + " out of 5.</p>";
     
-    if(ttlScore < 3) {
-        console.log("Computer Wins!");
+    if (ttlScore < 3) {
+        //console.log("Computer Wins!");
+        gameElement.innerHTML  = preabmble + "<p>Computer Wins!</p>";
     }
-    else{
-        console.log("You Win!");
+    else {
+        //console.log("You Win!");
+        gameElement.innerHTML  = preamble + "<p>You Win!</p>";
     }
 
 }
