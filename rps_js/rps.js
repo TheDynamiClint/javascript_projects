@@ -1,4 +1,5 @@
 let score = 0;
+let ties = 0;
 let roundNumber = 0;
 let resultElement = document.getElementById('result'); 
 let roundElement = document.getElementById('round');
@@ -33,8 +34,12 @@ function updateRound() {
         roundNumber++;
 
     } else {
-        
-        if (score < 3) {
+
+        if (ties == 5) {
+
+            response = preamble + " It's a Tie!";
+
+        } else if (score < 3) {
 
             response = preamble + " Computer Wins!";
 
@@ -45,6 +50,7 @@ function updateRound() {
 
         roundNumber = 0;
         score = 0;
+        ties = 0;
     }   
 }
 
@@ -77,7 +83,8 @@ function playRound (playerChoice) {
     if (comp == player) {
 
         response = "You tied this round! " + comp.charAt(0).toUpperCase()+ comp.slice(1) + " and " + player + ". ";
-    
+        ties++;
+
     } else if (comp == 'rock' && player == 'paper' ||
              comp == 'paper' && player == 'scissors' ||
              comp == 'scissors' && player =='rock') {
