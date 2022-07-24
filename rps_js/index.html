@@ -5,8 +5,29 @@
         <link href="styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <h1>Rock, Paper, Scissors</h1>
-        <div id="game_space"></div>
+
+        <div id="game_space">
+
+            <div id="top_text">
+                <h1>Rock, Paper, Scissors</h1>
+                <h2>Click on an option below to play...</h2>
+            </div>
+
+            <div id="image_space">
+                <img src="rock.png" alt="rock" class="choice" id="rock">
+                <img src="paper.png" alt="paper" class="choice" id="paper">
+                <img src="scissors.png" alt="scissors" class="choice" id="scissors">
+            </div>    
+
+            <div id="text_space">
+                <h3 id="round"></h3>
+                <p id="score"></p>
+                <h4 id="result"></h4>
+            </div>
+            
+        </div>
+
         <script src="rps.js"></script>
+
     </body>
 </html>
