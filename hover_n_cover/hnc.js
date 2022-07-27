@@ -36,6 +36,7 @@ function square (colNum) {
 
     gridSquares = document.querySelectorAll('.square');
     addEventListenerList(gridSquares, 'mouseover', switchBgColor);
+    addEventListenerList(gridSquares, 'touchstart', switchBgColor);
 
 }
 
