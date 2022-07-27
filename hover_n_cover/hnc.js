@@ -1,4 +1,7 @@
-let n = 100;
+let n = 16;
+let gridSquares;
+let lineColor = '#050505';
+let rainbow = false;
 
 function column () {
 
@@ -12,6 +15,7 @@ function column () {
         colDiv = container.appendChild(div);
         colDiv.classList.add('column');
         colDiv.id = colNum;
+
         square(colNum);
     }
 
@@ -30,11 +34,39 @@ function square (colNum) {
 
     }
 
+    gridSquares = document.querySelectorAll('.square');
+    addEventListenerList(gridSquares, 'mouseover', switchBgColor);
+
+}
+
+function clearGrid () {
+
+    container = document.getElementById('sub_container');
+    container.classList.add('shake');
+
+    setTimeout(function(){
+        container.classList.remove('shake');
+    }, 3000);
+
+    for (var i = 0, len = gridSquares.length; i < len; i++) {
+
+        gridSquares[i].style.backgroundColor = "white";
+
+    }
+
 }
 
 function switchBgColor () {
 
-    this.classList.add('fill-in-black');
+    if (rainbow === true){
+
+        this.style.backgroundColor = rainbowlizeColor();
+
+    } else {
+
+        this.style.backgroundColor = lineColor;
+
+    }
 
 }
 
@@ -48,7 +80,67 @@ function addEventListenerList(list, event, fn) {
 
 }
 
+function changeGridSize () {
+
+    n = document.getElementById('tb-size').value;
+    const node = document.getElementById('sub_container');
+
+    while (node.firstChild) {
+
+        node.replaceChildren();
+
+    }
+
+    column();
+}
+
+function setColor () {
+
+    clearGrid();
+    rainbow = false;
+    lineColor = colorBox.value;
+
+}
+
+function rainbowlizeColor () {
+ 
+    let colr = ["rgba(255, 0, 0, 1)",
+    "rgba(255, 154, 0, 1)",
+    "rgba(208, 222, 33, 1)",
+    "rgba(79, 220, 74, 1)",
+    "rgba(63, 218, 216, 1)",
+    "rgba(47, 201, 226, 1)",
+    "rgba(28, 127, 238, 1)",
+    "rgba(95, 21, 242, 1)",
+    "rgba(186, 12, 248, 1)",
+    "rgba(251, 7, 217, 1)",
+    "rgba(255, 0, 0, 1)"]
+
+    let num = Math.floor(Math.random() * colr.length);
+    let color = colr[num];
+
+    return color;
+
+}
+
+function setRainbow () {
+
+    clearGrid();
+    rainbow = true;
+
+}
+
 column();
 
-let gridSquares = document.querySelectorAll('.square');
-addEventListenerList(gridSquares, 'mouseover', switchBgColor); 
+let shakeBtn = document.getElementById('shake-btn');
+shakeBtn.addEventListener('click', clearGrid);
+
+let sizeBox = document.getElementById('tb-size');
+sizeBox.value = 16;
+sizeBox.addEventListener('change', changeGridSize);
+
+let colorBox = document.getElementById('color-picker');
+colorBox.addEventListener('change', setColor);
+
+let rainbowBtn = document.getElementById('rainbow');
+rainbowBtn.addEventListener('click', setRainbow);
