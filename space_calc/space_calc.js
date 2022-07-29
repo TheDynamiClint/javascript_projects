@@ -1,5 +1,6 @@
 
 // function called to cycle through countdown array
+
 function countDown (i){
 
     const countdiv =  document.querySelector('#countdown');
@@ -13,6 +14,7 @@ function countDown (i){
 } 
 
 // start countdown ---------------------------------
+
 let i = 0;
 
 setInterval(function() {
@@ -31,5 +33,6 @@ setInterval(function() {
     }
     
 }, 1000)
+
 // end countdown ------------------------------------
 
