@@ -2,13 +2,50 @@ body{
 
     background-image: url('space.png');
     background-position: cover;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     margin: 0;
     padding: 0;
+    color: white;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Wallpoet', cursive;
+    text-shadow: 10px 10px 8px black;
+    border: 10px solid green;
     
 }
 
-/*div#particles-js {
+#particles-js {
+
     height: 100vh;
     width: 100vw;
-}*/
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    border: 10px solid purple;
+    z-index: -1;
+}
+
+#content {
+
+    display: flexbox;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    text-align: start;
+    border: 10px solid red;
+    z-index: 1;
+    padding: 20px;
+    font-size: 36px;
+
+}
+
+h1{
+    flex: auto;
+    font-size: 100px;
+    font-weight:200;
+    font-family: 'Monoton', cursive;
+}
+
+#countdown{
+    font-size: 100px;
+}
