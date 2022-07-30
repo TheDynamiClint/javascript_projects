@@ -8,10 +8,14 @@ body{
     font-family: 'Wallpoet', cursive;
     text-shadow: 10px 10px 8px black;
     border: 10px solid green;
+    /*background-image: url('space.png');*/
+    background-color: black;
+    position: relative;
     
 }
 
-#particles-js{
+/*
+#div-one{
 
     height: 100vh;
     width: 100vw;
@@ -19,12 +23,24 @@ body{
     margin: 0;
     padding: 0;
     border: 10px solid purple;
-    z-index: -1;
-    background-image: url('space.png');
+    z-index: -2;
     background-position: cover;
     background-repeat: repeat;
-    background-color: black;
+    background-color: rgba(10, 2, 29, 0.7);
+    /*background-color: black;*/
+    /*background-image: url('space.png');
 }
+*/
+
+#starfield {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 8;
+  
+}
+
 
 #content {
 
@@ -41,12 +57,16 @@ body{
 }
 
 h1{
+
     flex: auto;
     font-size: 100px;
-    font-weight:200;
+    font-weight:200px;
     font-family: 'Monoton', cursive;
+
 }
 
 #countdown{
+
     font-size: 100px;
+
 }
