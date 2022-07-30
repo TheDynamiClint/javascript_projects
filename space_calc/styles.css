@@ -7,40 +7,23 @@ body{
     height: 100vh;
     font-family: 'Wallpoet', cursive;
     text-shadow: 10px 10px 8px black;
-    border: 10px solid green;
-    /*background-image: url('space.png');*/
-    background-color: black;
+    /*border: 10px solid green;*/
+    background-image: url('space.png');
     position: relative;
     
 }
-
-/*
-#div-one{
-
-    height: 100vh;
-    width: 100vw;
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    border: 10px solid purple;
-    z-index: -2;
-    background-position: cover;
-    background-repeat: repeat;
-    background-color: rgba(10, 2, 29, 0.7);
-    /*background-color: black;*/
-    /*background-image: url('space.png');
-}
-*/
 
 #starfield {
 
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 8;
+    width: 100vw;
+    height: 100vh;
+    /*z-index: -1;
+    border: 10px solid pink;*/
   
 }
-
 
 #content {
 
@@ -49,8 +32,8 @@ body{
     justify-content: space-between;
     flex-direction: column;
     text-align: start;
-    border: 10px solid red;
-    z-index: 1;
+    /*border: 10px solid red;
+    z-index: 1;*/
     padding: 20px;
     font-size: 36px;
 

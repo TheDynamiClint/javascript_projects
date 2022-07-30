@@ -41,7 +41,7 @@ setInterval(function() {
 * https://codepen.io/easymac/pen/bGBBeE             *
 *                                                   */
 
-var canvas = document.querySelector("#starfield");
+let canvas = document.querySelector("#starfield");
 var context = canvas.getContext("2d");
 canvas.width = document.body.clientWidth;
 canvas.height = document.body.clientHeight;
@@ -54,13 +54,15 @@ var mousecoords = [];
 var DENSITY = 5; // "per square inch" or something maybe
 makeStars(DENSITY);
 
-$("#starfield").mousemove(function(evt) {
+canvas.onmousemove = 
 
-  mousecoords = [evt.clientX, evt.clientY];
-  adjustmentPoint = [(mousecoords[0] - (canvas.width/2))/25, (mousecoords[1] - (canvas.height/2))/25]
-
-});
-
+    function (evt) {
+    
+        mousecoords = [evt.clientX, evt.clientY];
+        adjustmentPoint = [(mousecoords[0] - (canvas.width/2))/25, (mousecoords[1] - (canvas.height/2))/25];
+      
+    };
+    
 function makeStars(DENSITY) {
 
   var totalStars = (Math.floor(canvas.width / 72)) * (Math.floor(canvas.height / 72)) * DENSITY;
@@ -147,4 +149,5 @@ function blendColors(c0, c1, p) {
     return "#"+(0x1000000+(Math.round((R2-R1)*p)+R1)*0x10000+(Math.round((G2-G1)*p)+G1)*0x100+(Math.round((B2-B1)*p)+B1)).toString(16).slice(1);
 
 }
+
 // end starfield ------------------------------------
