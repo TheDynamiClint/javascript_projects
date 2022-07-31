@@ -1,5 +1,9 @@
-body{
+body {
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     margin: 0;
     padding: 0;
     color: white;
@@ -7,9 +11,9 @@ body{
     height: 100vh;
     font-family: 'Wallpoet', cursive;
     text-shadow: 10px 10px 8px black;
-    /*border: 10px solid green;*/
+    border: 10px solid green;
     background-image: url('space.png');
-    position: relative;
+    /*position: relative;*/
     
 }
 
@@ -20,36 +24,165 @@ body{
     left: 0;
     width: 100vw;
     height: 100vh;
-    /*z-index: -1;
-    border: 10px solid pink;*/
+    z-index: 0;
+    border: 10px solid pink;
   
 }
 
 #content {
 
-    display: flexbox;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
     text-align: start;
     /*border: 10px solid red;
-    z-index: 1;*/
-    padding: 20px;
+    /*z-index: 1;*/
+    padding: 50px;
     font-size: 36px;
 
 }
 
-h1{
+h1 {
 
     flex: auto;
     font-size: 100px;
     font-weight:200px;
     font-family: 'Monoton', cursive;
+    /*border: 10px solid red;*/
 
 }
 
-#countdown{
+#countdown {
 
     font-size: 100px;
+    /*border: 10px solid red;*/
 
 }
+
+/* credit and thanks to https://cssanimation.rocks/spheres/  
+for tutorial on css sphere animation */
+
+#calc_sphere {
+
+    flex: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    height: 500px;
+    width: 500px;
+    background: rgb(251, 248, 248);
+    background: radial-gradient(circle at 100px 100px, #f8f8f9, rgb(85, 79, 103));
+
+    /*z-index: 800;
+    border: 10px solid red;*/
+
+}
+
+.stage {
+
+    height: 500px;
+    width: 500px;
+    display: inline-block;
+    margin: 20px;
+    perspective: 1200px;
+    perspective-origin: 50% 50%;
+
+}
+
+#calc_sphere .shadow {
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0) 50%);
+    transform: rotateX(90deg) translateZ(-150px);
+
+  }
+
+  #calc_sphere:before {
+
+    content: "";
+    position: absolute;
+    top: 1%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 0px, #ffffff, rgba(255, 255, 255, 0) 58%);
+    filter: blur(5px);
+    z-index: 2;
+
+  }
+
+  .ball:after {
+
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 5%;
+    left: 10%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8) 14%, rgba(255, 255, 255, 0) 24%);
+    transform: translateX(-80px) translateY(-90px) skewX(-20deg);
+    filter: blur(10px);
+
+  }
+
+  .display {
+
+    background-color: rgba(0, 0, 0, 0.9);
+    position: absolute;
+    height: 100px;
+    width: 300px;
+    margin: 0px;
+    top: 20%;
+    left: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(none);
+    filter: none;
+    border-radius: 10px;
+    z-index: 2;
+    
+  }
+
+  .nums {
+
+    flex: auto;
+    color: rgb(245, 5, 5);
+    text-align: center;
+
+  }
+
+  #keypad{
+
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color: rgba(3, 3, 247, 0.8);
+    top: 50%;
+    left: 20%;
+    width: 300px;
+    gap: 4px;
+    z-index: 2;
+
+  }
+
+  .keys {
+
+    flex: auto;
+    padding: 5px;
+    border: 1px solid rgba(3, 3, 247, 0);
+    border-radius: 10px;
+    min-width: 40px;
+    text-align: center;
+    text-shadow: 1px 1px 5px #405df1, 0px 0px 8px rgb(255, 255, 255);
+    box-shadow: 0px 0px 5px #9a9898, 0px 0px 8px rgb(255, 255, 255);
+  }
