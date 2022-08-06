@@ -27,16 +27,55 @@ setInterval(function() {
     } else {
         
        clearInterval;
+
        const n = document.querySelector('#countdown');
-       n.textContent = '';
+
+        if (n != null) {
+
+            n.remove();
+
+            phaseInCalc();
+
+        }
 
     }
     
 }, 1000)
 
+function phaseInCalc () {
+
+    document.querySelectorAll(".hide")
+    .forEach( function(el) {
+    
+        el.classList.remove('hide');
+
+    })
+
+    moveUpCalc();
+
+}
+
+function moveUpCalc () {
+
+  var start = -500;
+  var sphere = document.getElementById('calc_sphere');
+  var style = sphere.style;   
+  
+  function moveUp () {
+
+    start++;
+    style.bottom = start + 'px';
+
+  }  
+  
+  setInterval(moveUp(), 500);
+
+}
+
+
 // end countdown ------------------------------------
 
-/*                                                  *
+/* ------------------------------------------------ *
 * Parallax Starfield by easymac                     *
 * https://codepen.io/easymac/pen/bGBBeE             *
 *                                                   */
@@ -54,9 +93,7 @@ var mousecoords = [];
 var DENSITY = 5; // "per square inch" or something maybe
 makeStars(DENSITY);
 
-canvas.onmousemove = 
-
-    function (evt) {
+canvas.onmousemove = function (evt) {
     
         mousecoords = [evt.clientX, evt.clientY];
         adjustmentPoint = [(mousecoords[0] - (canvas.width/2))/25, (mousecoords[1] - (canvas.height/2))/25];
@@ -151,3 +188,41 @@ function blendColors(c0, c1, p) {
 }
 
 // end starfield ------------------------------------
+
+// Listen for key hovers and clicks and do stuff ----
+
+function changeColor () {
+
+  function getRandNum () {
+
+    let randNum = Math.floor(Math.random() * 1000);
+
+    return randNum;
+
+  }
+  
+  let randColor = `rgba(${getRandNum()},${getRandNum()},${getRandNum()}`
+
+  this.style.backgroundColor = `${randColor}, 0.6)`;
+  this.style.color = `${randColor}, 1)`;
+  this.style.transform = "scale(1.1)";
+  this.style.textShadow = '1px 1px 5px rgb(4, 4, 4), 0px 0px 8px rgb(255, 255, 255)';
+
+}
+
+function changeColorBack () {
+
+  this.style.backgroundColor = 'rgba(251, 248, 248, 0.525)';
+  this.style.color = 'rgba(3, 3, 247, 0.8)';
+  this.style.transform = "scale(1)";
+
+}
+
+document.querySelectorAll('.keys')
+  .forEach( function(el) {
+
+    el.addEventListener('mouseover', changeColor, true);
+    el.addEventListener('mouseout', changeColorBack, true);
+    //el.addEventListener('click', changeColor, true);
+
+  })
