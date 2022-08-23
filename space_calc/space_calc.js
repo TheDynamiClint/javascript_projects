@@ -47,31 +47,26 @@ function phaseInCalc () {
     document.querySelectorAll(".hide")
     .forEach( function(el) {
     
-        el.classList.remove('hide');
+      el.classList.remove('hide');
 
     })
 
-    moveUpCalc();
+    document.querySelectorAll(".scale")
+    .forEach( function(el) {
+    
+      el.style.transform = "scale(0.1)";
+      el.style.transition = "all 3s linear";
+
+    })
+
+    document.querySelectorAll(".scale")
+    .forEach( function(el) {
+    
+      el.style.transform = "scale(1)";
+
+    })
 
 }
-
-function moveUpCalc () {
-
-  var start = -500;
-  var sphere = document.getElementById('calc_sphere');
-  var style = sphere.style;   
-  
-  function moveUp () {
-
-    start++;
-    style.bottom = start + 'px';
-
-  }  
-  
-  setInterval(moveUp(), 500);
-
-}
-
 
 // end countdown ------------------------------------
 
