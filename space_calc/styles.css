@@ -196,3 +196,15 @@ for tutorial on css sphere animation */
     padding: 4px 0px;
 
   }
+
+  .scale {
+
+    transition: transform 12s linear, top 12s linear;
+
+  }
+
+  .down {
+
+    transform: scale(0.1);
+
+  }

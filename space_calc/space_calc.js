@@ -3,13 +3,13 @@
 
 function countDown (i){
 
-    const countdiv =  document.querySelector('#countdown');
+  const countdiv =  document.querySelector('#countdown');
 
-    let count = ["10...", "9...", "8...", "7...", 
-                    "6...", "5...", "4...", "3...", 
-                        "2...", "1...","0..."];
+  let count = ["10...", "9...", "8...", "7...", 
+                  "6...", "5...", "4...", "3...", 
+                      "2...", "1...","0..."];
 
-    countdiv.textContent = count[i];
+  countdiv.textContent = count[i];
 
 } 
 
@@ -17,7 +17,7 @@ function countDown (i){
 
 let i = 0;
 
-setInterval(function() {
+var timer = setInterval(function() {
 
     if (i < 11){    
 
@@ -25,12 +25,12 @@ setInterval(function() {
         i++;
 
     } else {
-        
-       clearInterval;
 
        const n = document.querySelector('#countdown');
 
         if (n != null) {
+          
+            clearInterval(timer);
 
             n.remove();
 
@@ -42,33 +42,31 @@ setInterval(function() {
     
 }, 1000)
 
+
+// Unhide, make calculator bigger ------------------------
+
 function phaseInCalc () {
 
-    document.querySelectorAll(".hide")
-    .forEach( function(el) {
-    
-      el.classList.remove('hide');
+  var phasediv = document.querySelector(".hide")
 
-    })
+  phasediv.classList.remove('hide');
 
-    document.querySelectorAll(".scale")
-    .forEach( function(el) {
-    
-      el.style.transform = "scale(0.1)";
-      el.style.transition = "all 3s linear";
-
-    })
-
-    document.querySelectorAll(".scale")
-    .forEach( function(el) {
-    
-      el.style.transform = "scale(1)";
-
-    })
+  setTimeout(function() { increaseSize(); }, 11);
 
 }
 
-// end countdown ------------------------------------
+function increaseSize () {
+
+  clearInterval();
+  clearTimeout();
+
+  var downdiv = document.querySelector(".down")
+  
+  downdiv.classList.remove('down');
+
+}
+
+// end countdown/ calc enlarge ----------------------
 
 /* ------------------------------------------------ *
 * Parallax Starfield by easymac                     *
@@ -201,6 +199,7 @@ function changeColor () {
   this.style.backgroundColor = `${randColor}, 0.6)`;
   this.style.color = `${randColor}, 1)`;
   this.style.transform = "scale(1.1)";
+  this.style.transition = "transform 2s";
   this.style.textShadow = '1px 1px 5px rgb(4, 4, 4), 0px 0px 8px rgb(255, 255, 255)';
 
 }
@@ -218,6 +217,5 @@ document.querySelectorAll('.keys')
 
     el.addEventListener('mouseover', changeColor, true);
     el.addEventListener('mouseout', changeColorBack, true);
-    //el.addEventListener('click', changeColor, true);
 
   })
