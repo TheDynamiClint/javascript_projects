@@ -33,30 +33,32 @@
                 </div>
 
                     <div class="display">
-                        <div class="nums">1,234.0</div>
+                        <div class="nums" id="input">-1,234.0 + 1234.0</div>
+                        <div class="nums" id="output">1,234.0</div>
                     </div>
 
                     <div id="keypad">
 
-                        <div class="keys tinyfont" id="ac">AC</div>
-                        <div class="keys tinyfont" id="neg">+/-</div>
-                        <div class="keys" id="six">/</div>
-                        <div class="keys" id="one">x</div>
-                        <div class="keys" id="two">-</div>
-                        <div class="keys" id="three">+</div>
-                        <div class="keys" id="decimal">.</div>
-                        <div class="keys" id="zero">0</div>
-                        <div class="keys" id="one">1</div>
-                        <div class="keys" id="two">2</div>
-                        <div class="keys" id="three">3</div>
-                        <div class="keys" id="four">4</div>
-                        <div class="keys" id="percent">%</div>
-                        <div class="keys" id="five">5</div>
-                        <div class="keys" id="six">6</div>
-                        <div class="keys" id="seven">7</div>
-                        <div class="keys" id="eight">8</div>
-                        <div class="keys" id="nine">9</div>
-                        <div class="keys" id="equal">=</div>
+                        <div onclick="allClear()" class="keys tinyfont" id="ac">AC</div>
+                        <div onclick="numberSelect(this)" class="keys tinyfont" id="neg">+/-</div>
+                        <div onclick="mathOperator(this)" class="keys" id="divide">/</div>
+                        <div onclick="mathOperator(this)" class="keys" id="multiply">x</div>
+                        <div onclick="mathOperator(this)" class="keys" id="two">-</div>
+                        <div onclick="mathOperator(this)" class="keys" id="plus">+</div>
+                        <div onclick="decimalSelect()" class="keys" id="decimal">.</div>
+                        <div onclick="numberSelect(this)" class="keys" id="zero">0</div>
+                        <div onclick="numberSelect(this)" class="keys" id="one">1</div>
+                        <div onclick="numberSelect(this)" class="keys" id="two">2</div>
+                        <div onclick="numberSelect(this)" class="keys" id="three">3</div>
+                        <div onclick="numberSelect(this)" class="keys" id="four">4</div>
+                        <div onclick="percentConvert()" class="keys" id="percent">%</div>
+                        <div onclick="numberSelect(this)" class="keys" id="five">5</div>
+                        <div onclick="numberSelect(this)" class="keys" id="six">6</div>
+                        <div onclick="numberSelect(this)" class="keys" id="seven">7</div>
+                        <div onclick="numberSelect(this)" class="keys" id="eight">8</div>
+                        <div onclick="mathOperator(this)" class="keys" id="nine">9</div>
+                        <div onclick="equalSelect()" class="keys" id="equal">=</div>
+                        <div onclick="clearSelect()" class="keys tinyfont" id="clear">BKSP</div>
 
                     </div>
 

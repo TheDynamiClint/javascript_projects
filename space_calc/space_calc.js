@@ -219,3 +219,65 @@ document.querySelectorAll('.keys')
     el.addEventListener('mouseout', changeColorBack, true);
 
   })
+
+
+// ufo flying animation -----------------------------------------
+// modified code from: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_animations
+
+// calculator logic -----------------------------------------
+
+function operate (n1,n2,operator) {
+
+  let result = 0;
+
+  if (operator === '+') {
+
+    result = add(n1, n2);
+
+  } else if (operator === '-') {
+
+    result = subtract(n1, n2);
+
+  } else if (operator === 'x') {
+
+    result = multiply(n1, n2);
+
+  } else if (operator === '/') {
+
+    result = divide(n1, n2);
+
+  } else {
+
+    console.log('nothing worked');
+
+  }
+
+  console.log(result);
+
+}
+
+function add (n1, n2) {
+
+  return n1 + n2;
+
+}
+
+function subtract (n1, n2) {
+
+  return n1 - n2;
+
+}
+
+function multiply (n1, n2) {
+
+  return n1 * n2;
+
+}
+
+function divide (n1, n2) {
+
+  return n1 / n2;
+
+}
+
+operate(2,1,'/');
