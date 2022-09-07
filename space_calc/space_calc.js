@@ -226,6 +226,90 @@ document.querySelectorAll('.keys')
 
 // calculator logic -----------------------------------------
 
+// function to get number input
+function numberSelect(e) {
+  
+  if (input.innerHTML === '0') {
+
+    input.innerHTML = e.innerHTML;
+
+  } else {
+    
+    input.innerHTML += e.innerHTML;
+
+  }
+}
+
+function allClear () {
+
+input.innerHTML = 0;
+out = 0;
+
+}
+
+function mathOperator (e) {
+
+  let a = input.innerHTML.length - 1;
+  let z = input.innerHTML.length;
+
+  if (input.innerHTML.substring(a,z).indexOf('+','-','x','/') == 1) {
+
+    input.innerHTML = input.innerHTML.substring(0, str.length - 1);
+
+  } else if (input.innerHTML.substring(a,z).indexOf(e.innerHTML) == 1) {
+
+    input.innerHTML = input.innerHTML.substring(0, str.length - 1);
+
+  } else {
+ 
+    input.innerHTML += e.innerHTML;
+
+  }
+
+}
+
+function decimalSelect () {
+
+  if (input.innerHTML.indexOf('.') == 1) {
+    input.innerHTML = e.innerHTML;
+  } else {
+    input.innerHTML += ".";
+  }
+
+
+}
+
+function percentConvert () {
+
+
+
+
+}
+
+function equalSelect () {
+
+
+} 
+
+function clearSelect () {
+
+  str = input.innerHTML;
+
+  if(str == '' || str.length < 2) {
+
+    input.innerHTML = 0;
+
+  } else {
+
+  input.innerHTML = str.substring(0, str.length - 1);
+
+  }
+
+}
+
+// Operate function, specified by instructions,
+// gets two numbers and calls appropriate operation function
+
 function operate (n1,n2,operator) {
 
   let result = 0;
@@ -247,14 +331,14 @@ function operate (n1,n2,operator) {
     result = divide(n1, n2);
 
   } else {
-
+    //test log remove later *********
     console.log('nothing worked');
 
   }
 
-  console.log(result);
-
 }
+
+// Functions to perform operation on numbers
 
 function add (n1, n2) {
 
@@ -280,4 +364,71 @@ function divide (n1, n2) {
 
 }
 
-operate(2,1,'/');
+//test call to operate function, remove later *********
+operate(8,4,'x');
+
+// Allow keyboard to be used to manipulate calculator
+// attach keyboard event
+document.addEventListener('keydown', function (e) {
+  switch (e.key) {
+    case '0':
+      numberSelect(document.querySelector('#zero'));
+      break;
+    case '1':
+      numberSelect(document.querySelector('#one'));
+      break;
+    case '2':
+      numberSelect(document.querySelector('#two'));
+      break;
+    case '3':
+      numberSelect(document.querySelector('#three'));
+      break;
+    case '4':
+      numberSelect(document.querySelector('#four'));
+      break;
+    case '5':
+      numberSelect(document.querySelector('#five'));
+      break;
+    case '6':
+      numberSelect(document.querySelector('#six'));
+      break;
+    case '7':
+      numberSelect(document.querySelector('#seven'));
+      break;
+    case '8':
+      numberSelect(document.querySelector('#eight'));
+      break;
+    case '9':
+      numberSelect(document.querySelector('#nine'));
+      break;
+    case '+':
+      mathOperator(document.querySelector('#plus'));
+      break;
+    case '-':
+      mathOperator(document.querySelector('#minus'));
+      break;
+    case '*':
+      mathOperator(document.querySelector('#multiply'));
+      break;
+    case '/':
+      mathOperator(document.querySelector('#divide'));
+      break;
+    case '.':
+      decimalSelect();
+      break;
+    case '%':
+      percentSelect();
+      break;
+    case 'Enter':
+      // prevent default action
+      e.preventDefault();
+      equalSelect();
+      break;
+    case 'Backspace':
+      clearSelect();
+      break;
+    case 'Escape':
+      allClear();
+      break;
+  }
+});
