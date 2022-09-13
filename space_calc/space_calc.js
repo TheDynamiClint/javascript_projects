@@ -221,8 +221,10 @@ document.querySelectorAll('.keys')
   })
 
 
-// ufo flying animation -----------------------------------------
-// modified code from: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_animations
+/* ufo flying animation will go here ------------------------
+modified code from: 
+https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_animations */
+
 
 // calculator logic -----------------------------------------
 
@@ -288,6 +290,22 @@ function percentConvert () {
 
 function equalSelect () {
 
+  let inputString = input.innerHTML;
+
+  console.log(inputString); //test remove later *****************
+
+  // create a JSON object containing a first number, operator, and operator
+  let getResult = inputString => {
+
+    let [,n1, operator, n2] = inputString.match(/(\d+)(.*?)(\d+)/);
+
+    console.log(n1, n2, operator); //test remove later *****************
+
+    operate (Number(n1), Number(n2), operator);
+
+  }
+
+  getResult(inputString);
 
 } 
 
@@ -307,10 +325,12 @@ function clearSelect () {
 
 }
 
-// Operate function, specified by instructions,
-// gets two numbers and calls appropriate operation function
+/* Operate function, specified by instructions,
+gets two numbers and calls appropriate operation function */
 
 function operate (n1,n2,operator) {
+
+  console.log(n1, n2, operator); //test remove later *****************
 
   let result = 0;
 
@@ -331,10 +351,14 @@ function operate (n1,n2,operator) {
     result = divide(n1, n2);
 
   } else {
-    //test log remove later *********
-    console.log('nothing worked');
-
+    console.log('no operator function worked');
+    result = 'Error';
   }
+
+  output.innerHTML = result;
+  //input.innerHTML = 0;
+
+  console.log(result); //test remove later *****************
 
 }
 
@@ -364,11 +388,8 @@ function divide (n1, n2) {
 
 }
 
-//test call to operate function, remove later *********
-operate(8,4,'x');
-
-// Allow keyboard to be used to manipulate calculator
-// attach keyboard event
+/* Allow keyboard to be used to manipulate calculator
+attach keyboard event */
 document.addEventListener('keydown', function (e) {
   switch (e.key) {
     case '0':
