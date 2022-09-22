@@ -231,7 +231,7 @@ https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_anima
 // function to get number input
 function numberSelect(e) {
   
-  if (input.innerHTML === '0') {
+  if (input.innerHTML === '0' && output.innerHTML === '0') {
 
     input.innerHTML = e.innerHTML;
 
@@ -245,25 +245,29 @@ function numberSelect(e) {
 function allClear () {
 
 input.innerHTML = 0;
-out = 0;
+output.innerHTML = 0;
+n1 = 0;
+n2 = 0;
+operator = '';
 
 }
 
 function mathOperator (e) {
+  
+  if (input.innerHTML.match(/[0-9]*[\+\-x\/][0-9]*/) &&
+      output.innerHTML == '0') {  
+   
+    equalSelect();
+    input.innerHTML = output.innerHTML + e.innerHTML;
 
-  let a = input.innerHTML.length - 1;
-  let z = input.innerHTML.length;
+  } else if (input.innerHTML.match(/[0-9]*[\+\-x\/][0-9]*/) &&
+             parseFloat(output.innerHTML) > 0) {  
 
-  if (input.innerHTML.substring(a,z).indexOf('+','-','x','/') == 1) {
-
-    input.innerHTML = input.innerHTML.substring(0, str.length - 1);
-
-  } else if (input.innerHTML.substring(a,z).indexOf(e.innerHTML) == 1) {
-
-    input.innerHTML = input.innerHTML.substring(0, str.length - 1);
+    equalSelect();
+    input.innerHTML = output.innerHTML + e.innerHTML;
 
   } else {
- 
+
     input.innerHTML += e.innerHTML;
 
   }
@@ -272,10 +276,15 @@ function mathOperator (e) {
 
 function decimalSelect () {
 
-  if (input.innerHTML.indexOf('.') == 1) {
+  //if (input.innerHTML.indexOf('.') != -1) { // ******************
+  if (input.innerHTML.match(/[0-9]*[\.]/)) {
+
     input.innerHTML = e.innerHTML;
+
   } else {
+
     input.innerHTML += ".";
+
   }
 
 
@@ -297,7 +306,8 @@ function equalSelect () {
   // create a JSON object containing a first number, operator, and operator
   let getResult = inputString => {
 
-    let [,n1, operator, n2] = inputString.match(/(\d+)(.*?)(\d+)/);
+    //let [,n1, operator, n2] = inputString.match(/(\d+)(.*?)(\d+)/);
+    let [,n1, operator, n2] = inputString.match(/(\d+)([\+\-x\/]*?)(\d+)/);
 
     console.log(n1, n2, operator); //test remove later *****************
 
@@ -348,7 +358,8 @@ function operate (n1,n2,operator) {
 
   } else if (operator === '/') {
 
-    result = divide(n1, n2);
+    let n = divide(n1, n2);
+    result = Math.round((n + Number.EPSILON) * 100) / 100;
 
   } else {
     console.log('no operator function worked');
@@ -356,8 +367,6 @@ function operate (n1,n2,operator) {
   }
 
   output.innerHTML = result;
-  //input.innerHTML = 0;
-
   console.log(result); //test remove later *****************
 
 }
