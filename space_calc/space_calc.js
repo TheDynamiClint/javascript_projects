@@ -274,16 +274,18 @@ function mathOperator (e) {
 
 }
 
-function decimalSelect () {
+function decimalSelect (e) {
 
   //if (input.innerHTML.indexOf('.') != -1) { // ******************
-  if (input.innerHTML.match(/[0-9]*[\.]/)) {
+  if (input.innerHTML.match(/[0-9]*[\.][0-9]*[\+\-x\/][0-9]*/g) ||
+      input.innerHTML.match(/[0-9]*/g)) {
 
-    input.innerHTML = e.innerHTML;
+    input.innerHTML += ".";
+    console.log('made it to add decimal'); //remove later**********
 
   } else {
 
-    input.innerHTML += ".";
+    input.innerHTML;
 
   }
 
@@ -307,11 +309,12 @@ function equalSelect () {
   let getResult = inputString => {
 
     //let [,n1, operator, n2] = inputString.match(/(\d+)(.*?)(\d+)/);
-    let [,n1, operator, n2] = inputString.match(/(\d+)([\+\-x\/]*?)(\d+)/);
+    //let [,n1, operator, n2] = inputString.match(/(\d+\.*?)([\+\-x\/]*?)(\d+\.*?)/);
+    let [,n1, operator, n2] = inputString.match(/(\d+\.*\d*)([\+\-x\/]*?)(\d+\.*\d*)/);
 
     console.log(n1, n2, operator); //test remove later *****************
 
-    operate (Number(n1), Number(n2), operator);
+    operate (Number.parseFloat(n1), Number.parseFloat(n2), operator);
 
   }
 
@@ -342,30 +345,33 @@ function operate (n1,n2,operator) {
 
   console.log(n1, n2, operator); //test remove later *****************
 
+  let n = 0;
   let result = 0;
 
   if (operator === '+') {
 
-    result = add(n1, n2);
+    n = add(n1, n2);
 
   } else if (operator === '-') {
 
-    result = subtract(n1, n2);
+    n = subtract(n1, n2);
 
   } else if (operator === 'x') {
 
-    result = multiply(n1, n2);
+    n = multiply(n1, n2);
 
   } else if (operator === '/') {
 
-    let n = divide(n1, n2);
-    result = Math.round((n + Number.EPSILON) * 100) / 100;
+    n = divide(n1, n2);
 
   } else {
+
     console.log('no operator function worked');
-    result = 'Error';
+    result = 0;
+
   }
 
+  result = Math.round((n + Number.EPSILON) * 100) / 100;
   output.innerHTML = result;
   console.log(result); //test remove later *****************
 
