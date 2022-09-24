@@ -40,7 +40,7 @@ var timer = setInterval(function() {
 
     }
     
-}, 1000)
+}, 700)
 
 
 // Unhide, make calculator bigger ------------------------
@@ -248,7 +248,6 @@ input.innerHTML = 0;
 output.innerHTML = 0;
 n1 = 0;
 n2 = 0;
-operator = '';
 
 }
 
@@ -276,25 +275,40 @@ function mathOperator (e) {
 
 function decimalSelect (e) {
 
-  //if (input.innerHTML.indexOf('.') != -1) { // ******************
-  if (input.innerHTML.match(/[0-9]*[\.][0-9]*[\+\-x\/][0-9]*/g) ||
-      input.innerHTML.match(/[0-9]*/g)) {
+  let term = input.innerHTML;
+
+  if (term.match(/^(\d+)$|(\d+\.*\d+)([\+\-\/x])(\d+)/)){
 
     input.innerHTML += ".";
-    console.log('made it to add decimal'); //remove later**********
+
+  } else if (term.match(/^(\d+\.+\d+)$|(\d+\.*\d+)([\+\-\/x])(\d+\.+\d*)/)) {
+
+    input.innerHTML;
 
   } else {
 
-    input.innerHTML;
+    input.innerHTML += "0.";
 
   }
 
 
 }
 
-function percentConvert () {
+function percentSelect () {
 
+  let inputString = input.innerHTML;
+  let outputString = output.innerHTML;
 
+  if (outputString = '0' && inputString != '0'){
+
+    console.log('passed percent condition');
+    let percent = Number.parseFloat(inputString) * .01;
+    input.innerHTML = percent.toString();
+
+  } else {
+
+    console.log('didn\'t pass percent condition');
+  }
 
 
 }
@@ -308,8 +322,6 @@ function equalSelect () {
   // create a JSON object containing a first number, operator, and operator
   let getResult = inputString => {
 
-    //let [,n1, operator, n2] = inputString.match(/(\d+)(.*?)(\d+)/);
-    //let [,n1, operator, n2] = inputString.match(/(\d+\.*?)([\+\-x\/]*?)(\d+\.*?)/);
     let [,n1, operator, n2] = inputString.match(/(\d+\.*\d*)([\+\-x\/]*?)(\d+\.*\d*)/);
 
     console.log(n1, n2, operator); //test remove later *****************
@@ -453,7 +465,7 @@ document.addEventListener('keydown', function (e) {
       decimalSelect();
       break;
     case '%':
-      percentSelect();
+      percentSelect(document.querySelector('#percent'));
       break;
     case 'Enter':
       // prevent default action
