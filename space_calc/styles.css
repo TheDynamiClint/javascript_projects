@@ -130,7 +130,7 @@ for tutorial on css sphere animation */
 
     background-color: rgba(62, 113, 89, 0.5);
     position: absolute;
-    height: 100px;
+    height: 140px;
     width: 300px;
     margin: 0px;
     top: 20%;
@@ -152,12 +152,9 @@ for tutorial on css sphere animation */
     color: rgba(4, 4, 4, 0.6);
     text-align: center;
     text-shadow: 4px 4px 4px rgba(4, 4, 4, 0.8);
-
-  }
-
-  #input {
-
-    font-size: 15px;
+    max-width: 50%;
+    flex-wrap: wrap;
+    overflow-wrap:break-word;
 
   }
 

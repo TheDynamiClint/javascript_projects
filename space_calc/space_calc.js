@@ -240,6 +240,9 @@ function numberSelect(e) {
     input.innerHTML += e.innerHTML;
 
   }
+
+  processInput();
+
 }
 
 function allClear () {
@@ -271,6 +274,8 @@ function mathOperator (e) {
 
   }
 
+  processInput();
+
 }
 
 function decimalSelect (e) {
@@ -291,6 +296,9 @@ function decimalSelect (e) {
 
   }
 
+  processInput();
+  processOutput();
+
 
 }
 
@@ -298,18 +306,26 @@ function percentSelect () {
 
   let inputString = input.innerHTML;
   let outputString = output.innerHTML;
+  let percent = 0;
 
   if (outputString = '0' && inputString != '0'){
 
-    console.log('passed percent condition');
-    let percent = Number.parseFloat(inputString) * .01;
+    percent = Number.parseFloat(inputString) * .01;
     input.innerHTML = percent.toString();
+
+  } else if (outputString != '0') {
+
+    percent = Number.parseFloat(outputString) * .01;
+    output.innerHTML = percent.toString();
 
   } else {
 
     console.log('didn\'t pass percent condition');
+
   }
 
+  processInput();
+  processOutput();
 
 }
 
@@ -331,6 +347,8 @@ function equalSelect () {
   }
 
   getResult(inputString);
+  processInput();
+  processOutput();
 
 } 
 
@@ -347,6 +365,9 @@ function clearSelect () {
   input.innerHTML = str.substring(0, str.length - 1);
 
   }
+
+  processInput();
+  processOutput();
 
 }
 
@@ -417,6 +438,7 @@ function divide (n1, n2) {
 
 /* Allow keyboard to be used to manipulate calculator
 attach keyboard event */
+
 document.addEventListener('keydown', function (e) {
   switch (e.key) {
     case '0':
@@ -480,3 +502,60 @@ document.addEventListener('keydown', function (e) {
       break;
   }
 });
+
+/* decrease font-size of calculator display text as
+more numbers are entered */
+
+const input = document.querySelector('#input');
+const output = document.querySelector('#output');
+const inputContainer = document.querySelector('.display');
+
+function resize_to_fit_in() {
+
+  console.log('resize_to_fit_in fired');
+
+  let infontSize = window.getComputedStyle(input).fontSize;
+
+  input.style.fontSize = (parseFloat(infontSize) - 1) + 'px';
+
+  if(input.clientHeight >= inputContainer.clientHeight){
+
+    resize_to_fit_in();
+
+  }
+
+}
+
+function resize_to_fit_out() {
+
+  console.log('resize_to_fit fired');
+
+  let outfontSize = window.getComputedStyle(output).fontSize;
+
+  output.style.fontSize = (parseFloat(outfontSize) - 1) + 'px';
+  
+  if(output.clientHeight >= inputContainer.clientHeight){
+
+    resize_to_fit_out();
+
+  }
+
+}
+
+function processInput() { 
+  
+  input.style.fontSize = '25px'; // Default font size
+  console.log('processInput fired');
+
+  resize_to_fit_in();
+
+}
+
+function processOutput() { 
+  
+  output.style.fontSize = '30px'; // Default font size
+  console.log('processOutput fired');
+
+  resize_to_fit_out();
+
+}
